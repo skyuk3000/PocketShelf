@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "id": 42,
+      "platform_id": 7,
+      "name": "Large-cover fallback",
+      "fs_name_no_ext": "Large-cover fallback",
+      "platform_display_name": "Nintendo 3DS",
+      "summary": null,
+      "regions": ["USA"],
+      "path_cover_small": "",
+      "path_cover_large": "/assets/romm/resources/roms/7/42/cover/big.webp?ts=2026-10-12 08:30:00+00:00",
+      "url_cover": "https://images.example.invalid/provider/original.jpg",
+      "rom_user": null,
+      "files": [
+        {
+          "id": 701,
+          "rom_id": 42,
+          "file_name": "Large-cover fallback.cia",
+          "file_size_bytes": 1234,
+          "is_top_level": true
+        }
+      ]
+    }
+  ],
+  "total": 1,
+  "limit": 12,
+  "offset": 0,
+  "char_index": {},
+  "rom_id_index": [],
+  "filter_values": {
+    "genres": [],
+    "franchises": [],
+    "collections": [],
+    "companies": [],
+    "publishers": [],
+    "developers": [],
+    "game_modes": [],
+    "age_ratings": [],
+    "player_counts": [],
+    "regions": [],
+    "languages": [],
+    "tags": [],
+    "platforms": []
+  }
+}

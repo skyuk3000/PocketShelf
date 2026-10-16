@@ -1,0 +1,5 @@
+# RomM 3DS manifest example
+# Blank lines and lines whose first non-space character is # are ignored.
+
+The Legend of Zelda - A Link Between Worlds|http://192.168.1.100:8080/cia/zelda-albw.cia
+Mario Kart 7|http://192.168.1.100:8080/cia/mario-kart-7.cia

@@ -1,0 +1,19 @@
+# Generated files
+/build/
+*.3dsx
+*.elf
+*.smdh
+*.cia
+*.bnr
+*.icn
+*.map
+# Host-test executables and objects
+/tests/*_tests
+/tests/*.o
+/tests/*.d
+/tests/__pycache__/
+/packaging/__pycache__/
+
+# Locally compiled packaging toolchain (recreated by packaging/build_tools.sh)
+/tools/bin/
+/tools/build/
