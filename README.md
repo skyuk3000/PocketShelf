@@ -4,7 +4,7 @@ PocketShelf is a native Nintendo 3DS client for **RomM 5.4**. It lets you browse
 
 No bridge service is required: PocketShelf connects directly to RomM on your local network.
 
-> **Development status:** PocketShelf 0.6.1 is source-only development software. This repository does not currently publish release binaries. Hardware testing is still required before a production release, and automatic production updates are intentionally disabled.
+> **Development status:** PocketShelf 0.6.1 is development software. Clearly labelled GitHub pre-releases may provide binaries for manual testing, but they are not production releases or hardware-readiness claims. Hardware testing is still required before a production release, and automatic production updates are intentionally disabled.
 
 ## What it can do
 
@@ -39,7 +39,7 @@ Installing a CIA changes Home Menu title storage. Install only software you trus
 
 ## Build and install
 
-There are no official downloadable builds yet. To create a development build from source:
+Clearly labelled GitHub development/test pre-releases may provide binaries for manual testing. They are not production releases. To create a development build from source:
 
 ```sh
 make clean-host
@@ -57,7 +57,7 @@ Build outputs include:
 - `pocketshelf.cia` for installation with a trusted CIA installer
 - `pocketshelf.elf` development output
 
-Use the normal placement required by your Homebrew Launcher for the `.3dsx` and `.smdh` files, or install your locally verified `.cia` with your preferred trusted installer. No binary from this repository should currently be treated as a production release.
+Use the normal placement required by your Homebrew Launcher for the `.3dsx` and `.smdh` files, or install a hash-verified `.cia` with your preferred trusted installer. No development/test pre-release binary should be treated as a production release.
 
 ## First connection
 
@@ -110,16 +110,9 @@ CIA overwrite, update staging, and other destructive or security-sensitive actio
 
 ## Development release checklist
 
-The current **0.6.1** binaries are local development/test artifacts, not updater-compatible production releases. They have not been published by this repository, and they must not be attached to a GitHub release or advertised as production builds. Production updater trust remains intentionally disabled: `source/release_config.cpp` has no release origin, key ID, or Ed25519 public key.
+PocketShelf **0.6.1** development/test binaries may be published only as clearly labelled GitHub pre-releases. They are not updater-compatible production releases and must not be advertised as production or hardware-ready. Each pre-release must identify its exact source commit and publish freshly calculated hashes for its clean build. Production updater trust remains intentionally disabled: `source/release_config.cpp` has no release origin, key ID, or Ed25519 public key.
 
-SHA-256 hashes for the current local development artifacts built from commit `597c1b1e1e63b06e1005ec6fff08b2348d20426f`:
-
-| Artifact | SHA-256 |
-|---|---|
-| `pocketshelf.3dsx` | `d8d8f4f5144236273dbeb32f6e7fc32fa3bd168298ae4c7f321b18820967e43c` |
-| `pocketshelf.cia` | `c802f8258bd55ec8b7a5a538cb516317c7b2a40d7c0be18aa6a0c07af488f3b0` |
-| `pocketshelf.elf` | `dec6cdc25d7f859e91b84b8029655a706c4240eeecdc75e9b88c259600f27713` |
-| `pocketshelf.smdh` | `10990f6fbb69e8aede1a94119a7e7a32727f507b100ec2cea79ce51f81678dca` |
+See the [0.6.1 development/test release notes](docs/releases/v0.6.1-dev.1.md) for installation instructions, limitations, the trusted-LAN warning, and the hardware testing checklist.
 
 Before considering a future production release:
 
@@ -129,7 +122,7 @@ Before considering a future production release:
 - [ ] Exercise first-run settings, authenticated catalogue pagination, search/filter/sort, covers/screenshots, downloads, CIA new-install/explicit-overwrite/cancellation, and Checkpoint/managed-save selection and transfer.
 - [ ] Test network interruption, malformed/oversized responses, cancellation cleanup, sleep/Home Menu transitions, and low/free-space failures without leaving partial files or open installs.
 - [ ] Confirm the updater remains unavailable and fails closed while production trust is disabled. Enabling it requires a separate reviewed change with an HTTPS release origin, public key/key ID, signed canonical manifest, staged-CIA verification, and rollback/recovery testing; never commit the private signing key.
-- [ ] Publish nothing until the clean build, package inspection, hardware results, release notes, and final artifact hashes have been independently reviewed.
+- [ ] Publish production binaries only after the clean build, package inspection, hardware results, release notes, and final artifact hashes have been independently reviewed. Development/test builds must remain clearly labelled pre-releases without hardware-readiness claims.
 
 ## Technical documentation
 
