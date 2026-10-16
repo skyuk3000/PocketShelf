@@ -107,7 +107,7 @@ void test_save_creates_parent_directories_and_preserves_old_file_on_failed_repla
                              std::to_string(static_cast<long long>(getpid()));
     const std::string path = root + "/nested/settings.ini";
     const std::string cleanup = "rm -rf '" + root + "'";
-    std::system(cleanup.c_str());
+    require(std::system(cleanup.c_str()) == 0, "test cleanup should succeed");
 
     SettingsError error = SettingsError::None;
     Settings first{"http://first", "first-token", ""};
@@ -129,7 +129,7 @@ void test_save_creates_parent_directories_and_preserves_old_file_on_failed_repla
     require(romm3ds::loadSettings(path, loaded, error), "old settings should remain readable");
     require(loaded.base_url == first.base_url && loaded.token == first.token,
             "failed replacement must preserve the old settings file");
-    std::system(cleanup.c_str());
+    require(std::system(cleanup.c_str()) == 0, "test cleanup should succeed");
 }
 
 void test_missing_file_reports_not_found_without_mutating_output() {
