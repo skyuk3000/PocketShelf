@@ -34,7 +34,7 @@ The client uses the RomM 5.4 OpenAPI contract exposed by the configured server:
 - Cover content: the same-origin `path_cover_small` resource returned by RomM, falling back to `path_cover_large` when the small derivative is missing; RomM's `?ts=` cache-busting query is retained and URL-normalized
 - Screenshot content: the first bounded same-ROM path from `merged_screenshots`
 - User properties: `PUT /api/roms/{rom_id}/props`, including the documented `update_last_played` and `remove_last_played` query flags
-- Authentication: `Authorization: Bearer ***`
+- Authentication: `Authorization: Bearer <token>` (the token is never documented, logged, or committed)
 
 The download path's `{id}` is the **RomM file ID**, not the ROM ID. PocketShelf percent-encodes the raw filename once and rejects redirects, unsafe filenames, path traversal, non-HTTP base URLs, and cover URLs outside the configured RomM origin.
 
