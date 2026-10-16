@@ -144,6 +144,29 @@ Package version is **0.6.1** (encoded title version 97). `make verify-cia` check
 
 The host suite covers direct RomM page parsing, save inventory/schema parsing, real save endpoint URLs, Unicode escapes, safe managed paths, backup collision handling, install receipts, downloaded-file awareness, pagination URL construction, correct file-ID downloads, single filename encoding, RomM 5.4 cache-busted cover URLs, external-cover rejection, settings/token/filter migration and bounds, atomic settings/cache persistence, path safety, partial writes, text wrapping, type selection, legacy parsers, the Citro2D object budget, canonical update signed-byte construction, real Ed25519 verification, tamper/wrong-key/replay/downgrade/title/URL rejection, artifact hash/size checks, and deferred staging policy.
 
+## Development release checklist
+
+The current **0.6.1** binaries are local development/test artifacts, not updater-compatible production releases. They have not been published by this repository, and they must not be attached to a GitHub release or advertised as production builds. Production updater trust remains intentionally disabled: `source/release_config.cpp` has no release origin, key ID, or Ed25519 public key, so these artifacts cannot satisfy the signed production-update path.
+
+SHA-256 hashes for the current development artifacts built from commit `597c1b1e1e63b06e1005ec6fff08b2348d20426f`:
+
+| Artifact | SHA-256 |
+|---|---|
+| `pocketshelf.3dsx` | `d8d8f4f5144236273dbeb32f6e7fc32fa3bd168298ae4c7f321b18820967e43c` |
+| `pocketshelf.cia` | `c802f8258bd55ec8b7a5a538cb516317c7b2a40d7c0be18aa6a0c07af488f3b0` |
+| `pocketshelf.elf` | `dec6cdc25d7f859e91b84b8029655a706c4240eeecdc75e9b88c259600f27713` |
+| `pocketshelf.smdh` | `10990f6fbb69e8aede1a94119a7e7a32727f507b100ec2cea79ce51f81678dca` |
+
+Before considering a future production release:
+
+- [ ] Run `make clean-host && make host-test` on a standard host toolchain.
+- [ ] Rebuild with the official devkitPro 3DS toolchain, then run `make verify-cia`; record hashes from that clean build rather than reusing the development hashes above.
+- [ ] Test both `.3dsx` launch and `.cia` installation on a supported New Nintendo 3DS-family console.
+- [ ] Exercise first-run settings, authenticated catalogue pagination, search/filter/sort, covers/screenshots, downloads, CIA new-install/explicit-overwrite/cancellation, and Checkpoint/managed-save selection and transfer.
+- [ ] Test network interruption, malformed/oversized responses, cancellation cleanup, sleep/Home Menu transitions, and low/free-space failures without leaving partial files or open installs.
+- [ ] Confirm the updater remains unavailable and fails closed while production trust is disabled. Enabling it requires a separate reviewed change with an HTTPS release origin, public key/key ID, signed canonical manifest, staged-CIA verification, and rollback/recovery testing; never commit the private signing key.
+- [ ] Publish nothing until the clean build, package inspection, hardware results, release notes, and final artifact hashes have been independently reviewed.
+
 ## Conservative scope and deferred work
 
 This implementation deliberately keeps a bounded, working slice:
